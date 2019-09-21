@@ -1,0 +1,13 @@
+{
+    "mongo":{
+        
+        "mongoURI": "mongodb+srv://dev:GwRMfTa5rDAo1jgp@cluster0-vu7l2.mongodb.net/test?retryWrites=true&w=majority"
+    },
+    "mysql":{
+        "host": "localhost",
+        "user": "dbuser",
+        "password": "s3kreee7",
+        "database": "my_db"
+    }
+}
+
