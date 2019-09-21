@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "node ./node_modules/mocha/bin/mocha --recursive test",
-    "build": [{"src": "app.js","use": "@now/node-server"}]
+    "test": "node ./node_modules/mocha/bin/mocha --recursive test"
   },
   "author": "",
   "license": "ISC",
