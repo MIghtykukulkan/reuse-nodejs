@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "node ./node_modules/mocha/bin/mocha --recursive test",
-    "builds": [{"src": "app.js","use": "@now/node-server"}]
+    "build": [{"src": "app.js","use": "@now/node-server"}]
   },
   "author": "",
   "license": "ISC",
