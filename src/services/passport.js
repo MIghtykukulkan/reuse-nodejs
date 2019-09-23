@@ -4,6 +4,7 @@ const JWTStrategy   = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 const _ = require('lodash');
 const LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 //hardcoded users need to be removed while working with DB
 var users = [
@@ -44,7 +45,7 @@ function (email, password, cb) {
 
 
 
-  var strategy = new JWTStrategy(jwtOptions, function(jwt_payload, next) {
+  var jwtStrategy = new JWTStrategy(jwtOptions, function(jwt_payload, next) {
     console.log('payload received', jwt_payload);
     // replace the line below by making a DB call to return the user obj in the routeer
     var user = users[_.findIndex(users, {id: jwt_payload.id})];
@@ -57,8 +58,21 @@ function (email, password, cb) {
     }
   });
 
+const googleStrategy =   new GoogleStrategy({
+    clientID: 'YOUR_CLIENTID_HERE',
+    clientSecret: 'YOUR_CLIENT_SECRET_HERE',
+    callbackURL: 'http://localhost:8000/auth/google/callback'
+},
+(accessToken, refreshToken, profile, done) => {
+  //find the user in db , if not exists create one
+    done(null, profile); // passes the profile data to serializeUser
+}
+));
+
+
+passport.use(googleStrategy)
 passport.use(localStrategy)
-passport.use(strategy);
+passport.use(jwtStrategy);
 
 module.exports = {
   passport : passport,
