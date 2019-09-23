@@ -32,5 +32,14 @@ module.exports = router => {
             });
         })(req, res);
     });
+
+    router.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile'] , session: false}));
+
+    router.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/sign-in' , session: false}),
+    function(req, res) {
+        res.redirect("/home?token="+req.user.token);
+    });
     
 }

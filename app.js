@@ -1,5 +1,6 @@
 //the main js file
 //https://api.zeit.co/v1/integrations/deploy/QmUFfNgDfUHDez91gTUq5wzepk8GxK98LBv3xux9xGEDRz/2uDMGZsYU3
+var passport = require('passport');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -13,7 +14,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(busboy()); 
-
+app.use(passport.initialize());
+//app.use(passport.session());
 //connecting mongo
 mongoose.connect(configjson.mongo.mongoURI, { useNewUrlParser: true });
 
